@@ -7,10 +7,11 @@ class bit_vector
 {
 	public:
 		bit_vector();
+		~bit_vector();
 		void set(size_t index);
 		void reset(size_t index);
 	private:
-		long* m_num;
+		size_t* m_num;
 };
 
 template<size_t SZ>
@@ -18,6 +19,12 @@ bit_vector<SZ>::bit_vector()
 {
 	int count = (SZ - 1) / sizeof(long) * 8;
 	m_num = new long[count];
+}
+
+template<size_t SZ>
+bit_vector<SZ>::~bit_vector()
+{
+	delete[] m_num;
 }
 
 template<size_t SZ>
